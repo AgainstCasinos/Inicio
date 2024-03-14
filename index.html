@@ -9,31 +9,30 @@
         body {
             font-family: Impact, Arial, sans-serif;
             background-image: url('./imagens/8387538.png');
-            background-size: 71px;
+            background-size: 78px;
             background-repeat: repeat;
             animation: slideBackground 619s linear infinite;
-            margin: 0; /* Remover margens padrão */
-            padding: 0; /* Remover preenchimento padrão */
         }
 
         h1 {
-            text-align: left; /* Centralizar texto */
-            font-size: 5.7vw; /* Usar unidade de viewport para ajustar o tamanho do texto */
-            margin-top: 9vw; /* Usar vw para ajustar a margem superior */
-            margin-left: 14vw;
+            text-align: left;
+            font-size: 4.7em;
+            margin-top: 63px;
+            margin-left: 168px;
+            font-family: Impact, Arial, sans-serif;
         }
 
         .right-way {
-            display: inline;
-            margin-left: 10.4vw; /* Usar vw para ajustar a margem esquerda */
+            display: inline-block;
+            margin-left: 122px;
         }
 
         .corner-image {
             position: absolute;
-            top: 22.6vw; /* Usar vw para ajustar a posição vertical */
-            left: 18vw; /* Usar vw para ajustar a posição horizontal */
-            height: 14vw; /* Usar vw para ajustar o tamanho da imagem */
-            width: 3vw; /* Manter a proporção */
+            top: 172px;
+            left: 218px;
+            height: 261px;
+            width: auto;
             display: none;
         }
 
@@ -41,39 +40,38 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            margin-right: 2vw; /* Usar vw para ajustar a margem direita */
-            max-width: 30vw; /* Usar vw para ajustar o tamanho máximo da imagem */
-            height: auto; /* Manter a proporção */
+            margin-right: 10px;
+            max-width: 453px;
         }
 
         .bottom-right-text {
             position: absolute;
-            bottom: 26vw; /* Usar vw para ajustar a posição vertical */
-            right: 1vw; /* Usar vw para ajustar a posição horizontal */
-            font-size: 2vw; /* Usar vw para ajustar o tamanho do texto */
+            bottom: 389px;
+            right: 15px;
+            font-size: 1.5em;
             color: #000;
         }
 
         .bottom-text {
             position: fixed;
-            bottom: 2vh; /* Usar vh para ajustar a posição vertical */
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
-            font-size: 1.3vw; /* Usar vw para ajustar o tamanho do texto */
+            font-size: 1.3em;
             color: #9A3334;
         }
 
         .rounded-button {
             position: absolute;
-            top: 37vw; /* Usar vw para ajustar a posição vertical */
-            left: 15vw; /* Usar vw para ajustar a posição horizontal */
-            padding: 0.8vw 1.6vw; /* Usar vw para ajustar o preenchimento */
+            top: 449px;
+            left: 173px;
+            padding: 10px 20px;
             background-color: #9A3334;
             color: white;
             border: none;
-            border-radius: 0px 19px 0 19px; /* Usar vw para ajustar o raio da borda */
-            font-size: 1.7vw; /* Usar vw para ajustar o tamanho do texto */
+            border-radius: 0px 8px 0 8px;
+            font-size: 1.8em;
             cursor: pointer;
             font-family: Impact, Arial, sans-serif;
         }
@@ -84,12 +82,12 @@
 
         .top-right-text {
             position: absolute;
-            top: 2vh; /* Usar vh para ajustar a posição vertical */
-            right: 2vw; /* Usar vw para ajustar a posição horizontal */
-            font-size: 1vw; /* Usar vw para ajustar o tamanho do texto */
+            top: 10px;
+            right: 27px;
+            font-size: 0.9em;
             color: rgba(0, 0, 0, 0.3);
-            transform: rotate(-90deg);
-            transform-origin: top right;
+            transform: rotate(-90deg); /* Girar -90 graus */
+            transform-origin: top right; /* Definir o ponto de origem da transformação */
         }
 
         /* Animações e transições */
@@ -102,15 +100,46 @@
             }
         }
 
-        /* Consulta de mídia para dispositivos com largura máxima de 600px */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 8vw; /* Ajustar tamanho do texto para dispositivos menores */
-            }
+        /* Estilos para a tela de aviso */
+        #warning-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            text-align: center;
+            padding-top: 20%;
+        }
+
+        #warning-overlay div {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        #continue-button {
+            padding: 10px 20px;
+            background-color: #9A3334;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Impact, Arial, sans-serif;
         }
     </style>
 </head>
 <body>
+    <div id="warning-overlay">
+        <div>
+            <p>Atenção! Caso esteja usando um celular, visualize este site no modo "Para computador". Versão mobile em desenvolvimento.</p>
+            <button id="continue-button">Continuar</button>
+        </div>
+    </div>
+
     <h1>
         <span id="changing-text">
             <u>MUDE SEU<br></u>
@@ -139,12 +168,25 @@
     <!-- Restante do seu código HTML -->
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var warningOverlay = document.getElementById("warning-overlay");
+            var continueButton = document.getElementById("continue-button");
+
+            // Mostra o aviso ao carregar a página
+            warningOverlay.style.display = "block";
+
+            // Fecha o aviso ao clicar no botão "continuar"
+            continueButton.addEventListener("click", function() {
+                warningOverlay.style.display = "none";
+            });
+        });
+
         // Textos para animação
         var texts = [
             "Sem robô de apostas, sem mentiras.",
             "Isso não é um sonho, é real.",
             "Está pode ser sua única chance.",
-            "Então... oque vai ser?",
+            "Então... o que vai ser?",
         ];
         var index = 0;
         var textIndex = 0;
