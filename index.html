@@ -55,9 +55,8 @@
         .bottom-text {
             position: fixed;
             bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
+            margin-left: 353px;
+            text-align: left;
             font-size: 1.3em;
             color: #9A3334;
         }
@@ -128,14 +127,13 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-family: Impact, Arial, sans-serif;
         }
     </style>
 </head>
 <body>
     <div id="warning-overlay">
         <div>
-            <p>Atenção! Caso esteja usando um celular, visualize este site no modo "Para computador". Versão mobile em desenvolvimento.</p>
+            <p>Por favor, visualize este site em um computador. A versão mobile ainda está em desenvolvimento.</p>
             <button id="continue-button">Continuar</button>
         </div>
     </div>
@@ -172,8 +170,13 @@
             var warningOverlay = document.getElementById("warning-overlay");
             var continueButton = document.getElementById("continue-button");
 
-            // Mostra o aviso ao carregar a página
-            warningOverlay.style.display = "block";
+            // Verifica se o site está sendo acessado de um dispositivo móvel
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // Se for um dispositivo móvel, mostra o aviso
+            if (isMobile) {
+                warningOverlay.style.display = "block";
+            }
 
             // Fecha o aviso ao clicar no botão "continuar"
             continueButton.addEventListener("click", function() {
