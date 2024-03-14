@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Against Casinos</title>
+    <link rel="icon" type="image/png" href="./ícones/7375012.png">
+    <style>
+        body {
+            font-family: Impact, Arial, sans-serif;
+            background-image: url('./imagens/8387538.png');
+            background-size: 71px;
+            background-repeat: repeat;
+            animation: slideBackground 619s linear infinite;
+            margin: 0; /* Remover margens padrão */
+            padding: 0; /* Remover preenchimento padrão */
+        }
+
+        h1 {
+            text-align: left; /* Centralizar texto */
+            font-size: 5.7vw; /* Usar unidade de viewport para ajustar o tamanho do texto */
+            margin-top: 9vw; /* Usar vw para ajustar a margem superior */
+            margin-left: 14vw;
+        }
+
+        .right-way {
+            display: inline;
+            margin-left: 10.4vw; /* Usar vw para ajustar a margem esquerda */
+        }
+
+        .corner-image {
+            position: absolute;
+            top: 22.6vw; /* Usar vw para ajustar a posição vertical */
+            left: 18vw; /* Usar vw para ajustar a posição horizontal */
+            height: 14vw; /* Usar vw para ajustar o tamanho da imagem */
+            width: 3vw; /* Manter a proporção */
+            display: none;
+        }
+
+        .jeff {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-right: 2vw; /* Usar vw para ajustar a margem direita */
+            max-width: 30vw; /* Usar vw para ajustar o tamanho máximo da imagem */
+            height: auto; /* Manter a proporção */
+        }
+
+        .bottom-right-text {
+            position: absolute;
+            bottom: 26vw; /* Usar vw para ajustar a posição vertical */
+            right: 1vw; /* Usar vw para ajustar a posição horizontal */
+            font-size: 2vw; /* Usar vw para ajustar o tamanho do texto */
+            color: #000;
+        }
+
+        .bottom-text {
+            position: fixed;
+            bottom: 2vh; /* Usar vh para ajustar a posição vertical */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 1.3vw; /* Usar vw para ajustar o tamanho do texto */
+            color: #9A3334;
+        }
+
+        .rounded-button {
+            position: absolute;
+            top: 37vw; /* Usar vw para ajustar a posição vertical */
+            left: 15vw; /* Usar vw para ajustar a posição horizontal */
+            padding: 0.8vw 1.6vw; /* Usar vw para ajustar o preenchimento */
+            background-color: #9A3334;
+            color: white;
+            border: none;
+            border-radius: 0px 19px 0 19px; /* Usar vw para ajustar o raio da borda */
+            font-size: 1.7vw; /* Usar vw para ajustar o tamanho do texto */
+            cursor: pointer;
+            font-family: Impact, Arial, sans-serif;
+        }
+
+        .rounded-button:hover {
+            background-color: rgba(122, 39, 40);
+        }
+
+        .top-right-text {
+            position: absolute;
+            top: 2vh; /* Usar vh para ajustar a posição vertical */
+            right: 2vw; /* Usar vw para ajustar a posição horizontal */
+            font-size: 1vw; /* Usar vw para ajustar o tamanho do texto */
+            color: rgba(0, 0, 0, 0.3);
+            transform: rotate(-90deg);
+            transform-origin: top right;
+        }
+
+        /* Animações e transições */
+        @keyframes slideBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -10000px 10000px;
+            }
+        }
+
+        /* Consulta de mídia para dispositivos com largura máxima de 600px */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 8vw; /* Ajustar tamanho do texto para dispositivos menores */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <span id="changing-text">
+            <u>MUDE SEU<br></u>
+            <span class="right-way"><u>MODO DE JOGAR.</u></span>
+        </span>
+    </h1>
+    
+    <!-- Imagens de canto -->
+    <img src="./imagens/9265682.png" class="corner-image" alt="Seta preta">
+    <img src="./imagens/7685289.png" class="corner-image" alt="Seta vermelha">
+    
+    <!-- Imagem do porco -->
+    <img src="./imagens/9876235.png" class="jeff" alt="Jeff">
+    
+    <!-- Texto inferior direito -->
+    <div class="bottom-right-text">Jeff: Acho que jogo virou!</div>
+
+    <!-- Botão arredondado -->
+    <button class="rounded-button">ENTRAR</button>
+
+    <!-- Texto na base da página -->
+    <div class="bottom-text" id="animated-text"></div>
+
+    <!-- Adicione esta linha abaixo da tag body -->
+    <div class="top-right-text">Against Casinos - 2024</div>
+    <!-- Restante do seu código HTML -->
+
+    <script>
+        // Textos para animação
+        var texts = [
+            "Sem robô de apostas, sem mentiras.",
+            "Isso não é um sonho, é real.",
+            "Está pode ser sua única chance.",
+            "Então... oque vai ser?",
+        ];
+        var index = 0;
+        var textIndex = 0;
+        var textContainer = document.getElementById("animated-text");
+        var changingText = document.getElementById("changing-text");
+        var images = document.querySelectorAll(".corner-image");
+        var currentImageIndex = 0;
+
+        // Adiciona uma letra por vez aos textos
+        function addLetter() {
+            if (textIndex < texts[index].length) {
+                textContainer.innerHTML += texts[index][textIndex];
+                textIndex++;
+                setTimeout(addLetter, 42);
+            } else {
+                setTimeout(function() {
+                    textContainer.innerHTML = "";
+                    textIndex = 0;
+                    index = (index + 1) % texts.length;
+                    addLetter();
+                }, 8630);
+            }
+        }
+
+        // Alterna entre as imagens
+        function toggleImages() {
+            images[currentImageIndex].style.display = "none";
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].style.display = "block";
+        }
+
+        // Alterna a cor do texto
+        function changeColor() {
+            changingText.style.color = changingText.style.color === "rgb(154, 51, 52)" ? "#000000" : "#9A3334";
+        }
+
+        setInterval(changeColor, 500);
+        setInterval(toggleImages, 500);
+        addLetter();
+    </script>
+</body>
+</html>
